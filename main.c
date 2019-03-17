@@ -9,13 +9,13 @@ typedef struct LNode{
 	struct LNode *next;
 }LNode,*LinkList;
 
-//Í·²å·¨½¨Á¢µ¥Á´±í
+//å¤´æ’æ³•å»ºç«‹å•é“¾è¡¨
 LNode *creatList(){
 	LNode *L,*s;
 	int x;
 	L = (LNode *)malloc(sizeof(LNode));
 	if(L == NULL){
-		printf("¿Õ¼ä·ÖÅäÊ§°Ü.\n");
+		printf("ç©ºé—´åˆ†é…å¤±è´¥.\n");
 		exit(0);
 	}
 	L->next = NULL;
@@ -29,7 +29,7 @@ LNode *creatList(){
 	}
 	return L;
 }
-//Î²²å·¨½¨Á¢µ¥Á´±í
+//å°¾æ’æ³•å»ºç«‹å•é“¾è¡¨
 LNode *creatList2(){
 	int x;
 	LNode *L,*s,*r;
@@ -46,22 +46,22 @@ LNode *creatList2(){
 	r->next = NULL;
 	return L;
 }
-//µ¥Á´±í¾ÍµØÄæÖÃ
+//å•é“¾è¡¨å°±åœ°é€†ç½®
 void SqList_reverse(LNode *L){
-	//Èç¹ûµ¥Á´±íÎª¿Õ»òÖ»ÓÐÍ·½áµã»òÖ»ÓÐÒ»¸öÔªËØ£¬²»ÓÃ½øÐÐÄæÖÃ²Ù×÷
+	//å¦‚æžœå•é“¾è¡¨ä¸ºç©ºæˆ–åªæœ‰å¤´ç»“ç‚¹æˆ–åªæœ‰ä¸€ä¸ªå…ƒç´ ï¼Œä¸ç”¨è¿›è¡Œé€†ç½®æ“ä½œ
 	if(L == NULL || L->next == NULL || L->next->next == NULL)
 		return;
 	LNode *p,*q;
-	p = L->next;       //½«pÖ¸ÏòÁ´±íµÄµÚÒ»¸öÔªËØ
-	L->next = NULL;		//½«LÁ´ÓòÖ¸Ïò¿Õ
+	p = L->next;       //å°†pæŒ‡å‘é“¾è¡¨çš„ç¬¬ä¸€ä¸ªå…ƒç´ 
+	L->next = NULL;		//å°†Lé“¾åŸŸæŒ‡å‘ç©º
 	while(p != NULL){
-		q = p->next;	//±£´æpµÄºó¼Ì½áµã£¬·ÀÖ¹¶ÏÁ´
+		q = p->next;	//ä¿å­˜pçš„åŽç»§ç»“ç‚¹ï¼Œé˜²æ­¢æ–­é“¾
 		p->next = L->next;
 		L->next = p;
 		p = q;
 	}
 }
-//±éÀúÊä³öµ¥Á´±í
+//éåŽ†è¾“å‡ºå•é“¾è¡¨
 void printList(LNode *L){
 	if(L == NULL)
 		return;
@@ -72,22 +72,22 @@ void printList(LNode *L){
 	}
 	printf("\n");
 }
-//ÔÚ´øÍ·½áµãµÄµ¥Á´±íÖÐµÚi¸öÎ»ÖÃÖ®Ç°²åÈëÔªËØe
+//åœ¨å¸¦å¤´ç»“ç‚¹çš„å•é“¾è¡¨ä¸­ç¬¬iä¸ªä½ç½®ä¹‹å‰æ’å…¥å…ƒç´ e
 void ListInsert(LNode *L,int i,elemType e){
 	LNode *p = L->next;
 	int j = 1;
-	while(p && j < i - 1){   //Ñ°ÕÒµÚi-1¸öÎ»ÖÃ
+	while(p && j < i - 1){   //å¯»æ‰¾ç¬¬i-1ä¸ªä½ç½®
 		p = p->next;
 		++j;
 	}
-	if(!p || j > i - 1)
+	if(!p || j > i - 1)     //å¦‚æžœæ’å…¥ä½ç½®è¿‡å¤§ï¼Œé‚£ä¹ˆp=NULL,å¦‚æžœæ’å…¥çš„ä½ç½®æ˜¯0æˆ–è€…è´Ÿæ•°ï¼Œé‚£ä¹ˆj>i-1
 		return;
 	LNode *s = (LNode *)malloc(sizeof(LNode));
 	s->data = e;
 	s->next = p->next;
 	p->next = s;
 }
-//ÔÚ´øÍ·½áµãµÄµ¥Á´±íLÖÐ£¬É¾³ýµÚi¸öÔªËØ£¬²¢ÓÉe·µ»Ø
+//åœ¨å¸¦å¤´ç»“ç‚¹çš„å•é“¾è¡¨Lä¸­ï¼Œåˆ é™¤ç¬¬iä¸ªå…ƒç´ ï¼Œå¹¶ç”±eè¿”å›ž
 void ListDelete(LNode *L,int i,elemType *e){
 	LNode *p = L->next;
 	int j = 1;
@@ -95,7 +95,7 @@ void ListDelete(LNode *L,int i,elemType *e){
 		p = p->next;
 		++j;
 	}
-	if(!p || j > i-1)		// ¾­¹ýÑ­»·£¬Èô×îÖÕpÎª¿Õ£¬»òiÎª0»ò¸ºÊýÊ±£¬¶¼ËµÃ÷Î»ÖÃ²»ºÏÀí£»
+	if(!p || j > i-1)		//å¦‚æžœæ’å…¥ä½ç½®è¿‡å¤§ï¼Œé‚£ä¹ˆp=NULL,å¦‚æžœæ’å…¥çš„ä½ç½®æ˜¯0æˆ–è€…è´Ÿæ•°ï¼Œé‚£ä¹ˆj>i-1
 		return;
 	LNode *q = p->next;
 	p->next = q->next;
